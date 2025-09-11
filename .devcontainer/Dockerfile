@@ -1,12 +1,11 @@
-FROM mcr.microsoft.com/devcontainers/base:ubuntu
+FROM python:3.11-slim
+ARG USERNAME=vscode
+WORKDIR /src
 
-# Install Docker
-RUN apt-get update && \
-    apt-get install -y \
-    docker.io \
-    docker-compose && \
-    apt-get clean
+COPY requirements.txt .
+COPY ./scr ./scr
 
-# Enable Docker service
-RUN systemctl enable docker
+RUN pip install --no-cache-dir -r requirements.txt
 
+
+CMD ["uvicorn", "src.main:app", "--host", "0.0.0.0", "--port", "8000"]
