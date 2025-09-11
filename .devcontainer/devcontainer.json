@@ -1,0 +1,11 @@
+{
+  "name": "Docker Workspace",
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
+  "features": {
+    "docker-in-docker": "latest"
+  },
+  "forwardPorts": [2375],
+  "remoteUser": "vscode"
+}
